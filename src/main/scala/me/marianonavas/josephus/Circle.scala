@@ -4,8 +4,6 @@ package me.marianonavas.josephus
   *
   */
 case class Circle[T](elementsInCircle: Seq[T]) {
-    require(elementsInCircle.nonEmpty,
-        "Cannot create a circle without elements. The elements in circle sequence is empty")
 
     lazy val stream: Stream[T] =
         elementsInCircle.toStream.foldLeft(Stream(): Stream[T]) {
@@ -15,7 +13,7 @@ case class Circle[T](elementsInCircle: Seq[T]) {
     def removeNthPositionFromCircle(position: Int): Option[Circle[T]] = {
         val maybeNthPosition: Option[T] = stream.drop(position - 1).headOption
         val elementsInNewCircle = maybeNthPosition.map(value => elementsInCircle.filterNot(_ == value))
-        elementsInNewCircle.map(Circle(_))
+        elementsInNewCircle.flatMap(l => if(l.isEmpty) None else Some(Circle(l)))
     }
 }
 

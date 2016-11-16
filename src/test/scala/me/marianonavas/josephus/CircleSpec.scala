@@ -25,12 +25,6 @@ class CircleSpec extends FlatSpec {
 
     private val dropPositionFromCircleOf5AndTake = dropNthPositionAndTake(5)_
 
-    "Trying to create an empty circle" should "give us an exception" in {
-        intercept[IllegalArgumentException] {
-            Circle(Seq())
-        }
-    }
-
     "Taking 3 of 3 elements" should "return the sequence 1, 2, 3" in {
         takeTestWith3Elements(3, Seq(1, 2, 3))
     }
@@ -65,5 +59,12 @@ class CircleSpec extends FlatSpec {
 
     "Removing the 7th position in a 5 elements circle and taking 10" should "return the sequence 1, 3, 4, 5, 1, 3, 4, 5, 1, 3" in {
         assert(dropPositionFromCircleOf5AndTake(7, 10).contains(Seq(1, 3, 4, 5, 1, 3, 4, 5, 1, 3)))
+    }
+
+    "Removing the only position from a 1 element circle" should "return None" in {
+        val circle = Circle(Seq(1))
+        val maybeCircle = circle.removeNthPositionFromCircle(1)
+
+        assert(maybeCircle.isEmpty)
     }
 }
