@@ -20,11 +20,17 @@ class JosephusGameSpec extends FlatSpec {
         assert(playGame(5, 1) == 5)
     }
 
-    "In a 5 members circle with a step of 5" should "win the 4th" in {
+    "In a 5 members circle with a step of 7" should "win the 4th" in {
+        assert(playGame(5, 7) == 4)
+    }
+
+    // Here let's test the cases that the assignment tell us to test
+    // What happens if n = k?
+    "In a 5 members circle with a step of 5" should "win the 2th" in {
         assert(playGame(5, 5) == 2)
     }
 
-    "In a 5 members circle with a step of 7" should "win the 4th" in {
-        assert(playGame(5, 7) == 4)
+    "In a 10 members circle with a step of 10" should "win the 7th" in {
+        assert(playGame(10, 10) == 7)
     }
 }

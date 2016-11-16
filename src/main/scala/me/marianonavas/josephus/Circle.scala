@@ -23,11 +23,15 @@ case class Circle[T](elementsInCircle: Seq[T]) {
 
         val initialElementsSize = elementsInCircle.size
 
-        val after = nextElementsStream.take(initialElementsSize - (position - initialElementsSize % position)).toList
+        val after = nextElementsStream.take {
+            val pos = initialElementsSize - (position - initialElementsSize % position)
+            if(pos == 0) initialElementsSize
+            else pos
+        }.filterNot(_ == valueToRemove)
 
         val resultingStream = after ++ before.filterNot(_ == valueToRemove).filterNot(after.contains).toSet
 
-        if(resultingStream.isEmpty) None
+        if (resultingStream.isEmpty) None
         else Some(Circle(resultingStream))
     }
 }
