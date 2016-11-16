@@ -33,4 +33,9 @@ class JosephusGameSpec extends FlatSpec {
     "In a 10 members circle with a step of 10" should "win the 7th" in {
         assert(playGame(10, 10) == 7)
     }
+
+    // What happens when n = 3 and k = 2?
+    "In a 3 members circle with a step of 2" should "win the 3th" in {
+        assert(playGame(3, 2) == 3)
+    }
 }
