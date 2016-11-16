@@ -55,4 +55,8 @@ class JosephusGameSpec extends FlatSpec {
     "In a 15 members circle with a step of 5" should "win the 1st" in {
         assert(playGame(15, 5) == 1)
     }
+
+    "In a 7 members circle with a step of 4" should "win the 2nd" in {
+        assert(playGame(7, 4) == 2)
+    }
 }
