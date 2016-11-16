@@ -11,5 +11,5 @@ libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.12.1" % "test" withSources() withJavadoc()
 )
 
-initialCommands := "import me.marianonavas.nitroassignment._"
+initialCommands := "import me.marianonavas.josephus._"
 
