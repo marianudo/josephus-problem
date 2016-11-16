@@ -4,11 +4,11 @@ package me.marianonavas.josephus
   *
   */
 object Circle {
-    // Smart constructor for a Nil stream of Integer values
-    private val intNilStream: Stream[Int] = Stream()
+    def valuesStream[T](elementsInCircle: Seq[T]): Stream[T] =
+        elementsInCircle.toStream.foldLeft(Stream(): Stream[T]) {
+            (acc, value) => value #:: acc
+        }.reverse
 
     def valuesStream(numberOfElements: Int): Stream[Int] =
-        (1 to numberOfElements).toStream.foldLeft(Circle.intNilStream) {
-            (acc, value) => value #:: acc
-        }.reverse #::: valuesStream(numberOfElements)
+        valuesStream(1 to numberOfElements) #::: valuesStream(numberOfElements)
 }
