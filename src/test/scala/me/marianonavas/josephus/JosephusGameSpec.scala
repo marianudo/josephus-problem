@@ -38,4 +38,11 @@ class JosephusGameSpec extends FlatSpec {
     "In a 3 members circle with a step of 2" should "win the 3th" in {
         assert(playGame(3, 2) == 3)
     }
+
+    // What happens if n is very large, but k = 2?
+    // Not really feeling like doing this manually, so we assume that the calculation is correct
+    // It terminates at least
+    "In a 500 members circle with a step of 2" should "win the " in {
+        assert(playGame(500, 2) == 489)
+    }
 }
