@@ -10,7 +10,7 @@ case class Circle[T](elementsInCircle: Seq[T]) {
     lazy val stream: Stream[T] =
         elementsInCircle.toStream.foldLeft(Stream(): Stream[T]) {
             (acc, value) => value #:: acc
-        }.reverse #::: elementsInCircle.toStream
+        }.reverse #::: stream
 
     def removeNthPositionFromCircle(position: Int): Option[Circle[T]] = {
         val maybeNthPosition: Option[T] = stream.drop(position - 1).headOption

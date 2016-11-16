@@ -62,4 +62,8 @@ class CircleSpec extends FlatSpec {
     "Removing the 3th position in a 5 elements circle and taking 7" should "return the sequence 1, 2, 4, 5, 1, 2, 4" in {
         assert(dropPositionFromCircleOf5AndTake(3, 7).contains(Seq(1, 2, 4, 5, 1, 2, 4)))
     }
+
+    "Removing the 7th position in a 5 elements circle and taking 10" should "return the sequence 1, 3, 4, 5, 1, 3, 4, 5, 1, 3" in {
+        assert(dropPositionFromCircleOf5AndTake(7, 10).contains(Seq(1, 3, 4, 5, 1, 3, 4, 5, 1, 3)))
+    }
 }
