@@ -4,11 +4,11 @@ package me.marianonavas.josephus
   *
   */
 object Circle {
-    def valuesStream[T](elementsInCircle: Seq[T]): Stream[T] =
+    def createCircle[T](elementsInCircle: Seq[T]): Stream[T] =
         elementsInCircle.toStream.foldLeft(Stream(): Stream[T]) {
             (acc, value) => value #:: acc
-        }.reverse
+        }.reverse #::: createCircle(elementsInCircle)
 
-    def valuesStream(numberOfElements: Int): Stream[Int] =
-        valuesStream(1 to numberOfElements) #::: valuesStream(numberOfElements)
+    def createInitialCircle(numberOfElements: Int): Stream[Int] =
+        createCircle(1 to numberOfElements)
 }

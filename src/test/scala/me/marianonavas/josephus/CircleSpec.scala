@@ -6,14 +6,14 @@ import org.scalatest.FlatSpec
   *
   */
 class CircleSpec extends FlatSpec {
-    import Circle.valuesStream
+    import Circle.createInitialCircle
 
     private val doTestWith5Elements = doTest(5)_
 
     private val doTestWith3Elements = doTest(3)_
 
     private def doTest(elementsInCircle: Int)(elemsToTake: Int, expectedSequence: List[Int]) = {
-        assert(valuesStream(elementsInCircle).take(elemsToTake).toList == expectedSequence)
+        assert(createInitialCircle(elementsInCircle).take(elemsToTake).toList == expectedSequence)
     }
 
     "Taking 3 of 3 elements" should "return the sequence 1, 2, 3" in {
