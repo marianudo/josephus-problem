@@ -3,9 +3,9 @@ package me.marianonavas.josephus
 /**
   *
   */
-case class Circle[T](elementsInCircle: List[T]) {
+case class Circle[T](elementsInCircle: Seq[T]) {
 
-    private def makeCircleForElements(elements: List[T]): Stream[T] =
+    private def makeCircleForElements(elements: Seq[T]): Stream[T] =
         elements.foldLeft(Stream(): Stream[T]) {
             (acc, value) => value #:: acc
         }.reverse #::: makeCircleForElements(elements)
@@ -16,7 +16,7 @@ case class Circle[T](elementsInCircle: List[T]) {
     def removeNthPositionFromCircle(position: Int): Option[Circle[T]] = {
         require(position > 0, "The position to remove from the circle must be greater than 0")
 
-        val before = stream.take(position - 1).toList
+        val before = stream.take(position - 1)
 
         val valueToRemove = stream.take(position).last
         val nextElementsStream = stream.drop(position)
@@ -34,5 +34,5 @@ case class Circle[T](elementsInCircle: List[T]) {
 
 object Circle {
     def withIntElements(numOfElements: Int): Circle[Int] =
-        Circle((1 to numOfElements).toList)
+        Circle(1 to numOfElements)
 }
