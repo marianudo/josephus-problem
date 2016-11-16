@@ -3,12 +3,23 @@ package me.marianonavas.josephus
 /**
   *
   */
-object Circle {
-    def createCircle[T](elementsInCircle: Seq[T]): Stream[T] =
+case class Circle[T](elementsInCircle: Seq[T]) {
+    require(elementsInCircle.nonEmpty,
+        "Cannot create a circle without elements. The elements in circle sequence is empty")
+
+    lazy val stream: Stream[T] =
         elementsInCircle.toStream.foldLeft(Stream(): Stream[T]) {
             (acc, value) => value #:: acc
-        }.reverse #::: createCircle(elementsInCircle)
+        }.reverse #::: elementsInCircle.toStream
 
-    def createInitialCircle(numberOfElements: Int): Stream[Int] =
-        createCircle(1 to numberOfElements)
+    def removeNthPositionFromCircle(position: Int): Option[Circle[T]] = {
+        val maybeNthPosition: Option[T] = stream.drop(position - 1).headOption
+        val elementsInNewCircle = maybeNthPosition.map(value => elementsInCircle.filterNot(_ == value))
+        elementsInNewCircle.map(Circle(_))
+    }
+}
+
+object Circle {
+    def withIntElements(numOfElements: Int): Circle[Int] =
+        Circle(1 to numOfElements)
 }
