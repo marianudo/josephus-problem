@@ -29,17 +29,6 @@ case class Circle[T](elementsInCircle: List[T]) {
 
         if(resultingStream.isEmpty) None
         else Some(Circle(resultingStream))
-
-//        val before = stream.take(position - 1)
-//        val valueToRemove = stream.take(position).head
-//        val elementsToTake = elementsInCircle.size - position
-//        val stream1 = stream.drop(position)
-//        val after = stream1.take(elementsToTake).filterNot(_ == valueToRemove)
-//
-//        val resultingElements: Seq[T] = after ++ before
-//
-//        if (resultingElements.isEmpty) None
-//        else Some(Circle(resultingElements.toList))
     }
 }
 
